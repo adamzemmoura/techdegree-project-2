@@ -102,8 +102,43 @@ function appendPageLinks(list) {
    
 }
 
+function appendSearchBar() {
+   
+   // create the container div for search box
+   const div = document.createElement("div")
+   div.classList.add("student-search")
+
+   // create and append the search input
+   const input = document.createElement("input")
+   input.placeholder = "Search for students..."
+   div.appendChild(input)
+
+   // create and append the search button 
+   const button = document.createElement("button")
+   button.innerText = "Search"
+   div.appendChild(button)
+
+   // create search button click handler 
+   button.addEventListener('click', (e) => {
+      const searchText = document.querySelector('input').value
+      filterStudentList(searchText)
+      
+   })
+
+   // const searchBarHTML = `
+   //    <input placeholder="Search for students...">
+   //    <button>Search</button>
+   // `
+   // div.innerHTML = searchBarHTML
+   // document.querySelector('.student-search > button').addEventListener('click', () => {
+   //    console.log("search button clicked")
+   // })
+   document.querySelector('.page-header').appendChild(div)
+}
+
 // When DOM content loaded, show page 1 by default and append page links
 document.addEventListener('DOMContentLoaded', () => {   
    showPage(studentListItemElements, 1)
    appendPageLinks(studentListItemElements)
+   appendSearchBar()
 })
